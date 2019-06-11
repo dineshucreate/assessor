@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import Modal from 'react-native-modalbox';
 import { BallIndicator } from 'react-native-indicators';
-import { Colors } from './colors';
+import { Colors } from './Colors';
 
 export default class LoadingView extends Component {
     static defaultProps = {
@@ -10,10 +11,10 @@ export default class LoadingView extends Component {
     };
 
     showModalView() {
-      this.refs.loaderView.open();
+      this.loader.open();
     }
     hideModalView() {
-      this.refs.loaderView.close();
+      this.loader.close();
     }
 
     render() {
@@ -28,7 +29,7 @@ export default class LoadingView extends Component {
           backButtonClose={false}
           backdropPressToClose={false}
           animationDuration={200}
-          ref={'loaderView'}
+          ref={(loaderRef) => { this.loader = loaderRef; }}
         >
           <View style={{ flex: 1 }}>
             <BallIndicator
@@ -41,9 +42,12 @@ export default class LoadingView extends Component {
       );
     }
 }
+
+LoadingView.propTypes = {
+  message: PropTypes.string,
+};
+
 const styles = StyleSheet.create({
-  // LOADING MODAL
   loadingModal: { height: 80, width: 100, padding: 5, borderRadius: 10 },
   loadingText: { color: Colors.baseColor, alignSelf: 'center' },
-
 });
