@@ -1,4 +1,5 @@
 export const Colors = {
+  PrimaryAppColor: '#3C8DBC',
   PrimaryText: '#656565',
   SecondaryText: '#989898',
   BorderLine: 'rgba(255, 255, 255, 0.5)',
@@ -6,5 +7,4 @@ export const Colors = {
   redColor: '#FE5F6B',
   white: '#ffffff',
   black: '#000000',
-  baseColor: '#3C8DBC',
 };

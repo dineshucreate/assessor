@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { Colors } from '../../../../utilities/Colors';
 
 const { width } = Dimensions.get('window');
 
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     padding: 10,
     borderWidth: 2,
-    borderColor: '#3C8DBC',
+    borderColor: Colors.PrimaryAppColor,
     borderRadius: 10,
     width: width - 30,
   },
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'column',
     marginHorizontal: 15,
-    flex: 1
+    flex: 1,
   },
   styleTitle: {
     fontSize: 18,
@@ -30,17 +31,17 @@ const styles = StyleSheet.create({
   styleTechText: {
     fontSize: 16,
   },
-  styleImage: { 
-    height: 70, 
+  styleImage: {
+    height: 70,
     width: 70,
   },
-  styleImageTech: { 
-    height: 30, 
+  styleImageTech: {
+    height: 30,
     width: 30,
-    marginRight: 5
+    marginRight: 5,
   },
-  styleTechnologies: { 
-    flexDirection: 'row'
+  styleTechnologies: {
+    flexDirection: 'row',
   },
 });
 
