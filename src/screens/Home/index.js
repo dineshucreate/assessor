@@ -5,7 +5,11 @@ import firebase from 'react-native-firebase';
 import styles from './style';
 import ListItem from './Components/ListItem';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { currentUser: null };
+  }
 
     constructor(props) {
         super(props);
@@ -31,12 +35,12 @@ export default class Home extends React.Component {
     }
 
     signOut = () => {
-        firebase.auth().signOut(); 
-        const resetAction = StackActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: 'Login' })],
-        });
-        this.props.navigation.dispatch(resetAction);
+      firebase.auth().signOut();
+      const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Login' })],
+      });
+      this.props.navigation.dispatch(resetAction);
     }
 
     renderItem = ({ item, index }) => (
@@ -69,3 +73,8 @@ export default class Home extends React.Component {
     }
 }
 
+Home.propTypes = {
+  navigation: PropTypes.object,
+};
+
+export default Home;
