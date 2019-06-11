@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Modal from 'react-native-modalbox';
 import { BallIndicator } from 'react-native-indicators';
-import { Colors } from './colors';
+import { Colors } from './Colors';
 
 export default class LoadingView extends Component {
     static defaultProps = {
