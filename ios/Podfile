@@ -10,6 +10,8 @@ target 'Assessor' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
 
+#  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'AssessorTests' do
     inherit! :search_paths
     # Pods for testing

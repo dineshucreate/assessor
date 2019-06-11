@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "506003445323",
+    "firebase_url": "https://assessor-c1e05.firebaseio.com",
+    "project_id": "assessor-c1e05",
+    "storage_bucket": "assessor-c1e05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506003445323:android:d4333b3c903a2889",
+        "android_client_info": {
+          "package_name": "com.assessor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506003445323-njrq28a5l7g4vo2ubt189peej10cvl2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oADyDoruVPbhuIem6ylRBNf0jsw9y7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506003445323-njrq28a5l7g4vo2ubt189peej10cvl2e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "506003445323-p94i9mgg06nlg19lcsj8qkf1kl6u4d95.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.assessor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
