@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Button } from 'react-native';
 import firebase from 'react-native-firebase';
-import LoadingView from '../../../utilities/loaderView';
+import LoadingView from '../../utilities/loaderView';
 import { LOGIN, SIGN_UP} from './constants';
 import styles from './style';
 
@@ -16,7 +16,7 @@ export default class SignUp extends React.Component {
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => { 
-            navigation.navigate('Main'); 
+            navigation.navigate('Home'); 
             this.refs.loader.hideModalView();
         })
         .catch(error => {
@@ -62,7 +62,7 @@ export default class SignUp extends React.Component {
             </TouchableOpacity>
             <Button
                 title={LOGIN}
-                onPress={() => navigation.navigate('LoginF')}
+                onPress={() => navigation.navigate('Login')}
             />
             {
                 this.renderLoadingView()

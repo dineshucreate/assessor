@@ -1,36 +1,15 @@
 
-import { createStackNavigator, 
-         createAppContainer } from 'react-navigation';
-import LoginF from './containers/FirebaseLogin/Login';
-import Main from './containers/Home';
-import SignUp from './containers/FirebaseLogin/Signup';
-import Loading from './utilities/Loading';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import Login from './screens/Login';
+import Home from './screens/Home';
+import SignUp from './screens/Signup';
+import Loading from './components/Loading';
 
 const Components = {
-    Loading: {
-        screen: Loading,
-        navigationOptions: () => ({
-            header: null,
-        })
-    },
-    SignUp: {
-        screen: SignUp,
-        navigationOptions: () => ({
-            header: null,
-        })
-    },
-    LoginF: {
-        screen: LoginF,
-        navigationOptions: () => ({
-            header: null,
-        })
-    },
-    Main: {
-        screen: Main,
-        navigationOptions: () => ({
-            header: null,
-        })
-    },
+    Loading,
+    SignUp,
+    Login,
+    Home,
 };
 
 const AuthStackLogin = createStackNavigator(
@@ -39,6 +18,7 @@ const AuthStackLogin = createStackNavigator(
     },
     {
         initialRouteName: 'Loading',
+        headerMode: 'none',
     }
 );
 

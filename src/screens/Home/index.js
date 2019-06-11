@@ -4,7 +4,7 @@ import { StackActions, NavigationActions } from 'react-navigation';
 import firebase from 'react-native-firebase';
 import styles from './style';
 
-export default class Main extends React.Component {
+export default class Home extends React.Component {
 
     constructor(props) {
         super(props);
@@ -21,7 +21,7 @@ export default class Main extends React.Component {
         firebase.auth().signOut(); 
         const resetAction = StackActions.reset({
             index: 0,
-            actions: [NavigationActions.navigate({ routeName: 'LoginF' })],
+            actions: [NavigationActions.navigate({ routeName: 'Login' })],
         });
         this.props.navigation.dispatch(resetAction);
     }

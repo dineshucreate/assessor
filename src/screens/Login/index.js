@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TextInput, View, Button, TouchableOpacity } from 'react-native';
 import firebase from 'react-native-firebase';
-import LoadingView from '../../../utilities/loaderView';
+import LoadingView from '../../utilities/loaderView';
 import { LOGIN, SIGN_UP} from './constants';
 import styles from './style';
 
@@ -17,7 +17,7 @@ export default class Login extends React.Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => { 
-          navigation.navigate('Main'); 
+          navigation.navigate('Home'); 
           this.refs.loader.hideModalView();
         })
       .catch(error => { 
