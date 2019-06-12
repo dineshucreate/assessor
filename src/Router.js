@@ -8,9 +8,9 @@ import AddDev from './screens/AddDev';
 import Review from './screens/Review';
 
 const Components = {
-  Login,
-  SignUp,
   Welcome,
+  SignUp,
+  Login,
   Home,
   DevProfile,
   AddDev,

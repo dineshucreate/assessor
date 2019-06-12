@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '../../utilities/Colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -41,7 +42,7 @@ export const styles = StyleSheet.create({
     marginVertical: 15,
   },
   SectionHeader: {
-    backgroundColor: '#64B5F6',
+    backgroundColor: Colors.PrimaryAppColor,
     fontSize: 20,
     padding: 5,
     color: '#fff',
