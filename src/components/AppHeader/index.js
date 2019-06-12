@@ -9,7 +9,7 @@ const goBack = () => {
   navigationService.goBack();
 };
 
-const AppHeader = ({ title, rtTitle, showBackButton }) => {
+const AppHeader = ({ title, rtTitle, showBackButton, rbtnOnPress }) => {
   return (
     <View style={styles.topBar}>
       <Text style={styles.titleText}>{title}</Text>
@@ -21,7 +21,7 @@ const AppHeader = ({ title, rtTitle, showBackButton }) => {
           <BackButton size={30} name="ios-arrow-back" color="white" />
         </TouchableOpacity> : <View />}
         {rtTitle && <TouchableOpacity
-          onPress={this.handleLogin}
+          onPress={rbtnOnPress}
           hitSlop={styles.btnHitSlop}
         >
           <Text style={styles.addText}>{rtTitle}</Text>
@@ -35,6 +35,7 @@ AppHeader.propTypes = {
   title: PropTypes.string,
   rtTitle: PropTypes.string,
   showBackButton: PropTypes.bool,
+  rbtnOnPress: PropTypes.func,
 };
 
 export default AppHeader;

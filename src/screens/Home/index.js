@@ -26,6 +26,10 @@ class Home extends React.Component {
       navigationService.reset('Login');
     }
 
+    navigateToAddDev = () => {
+      navigationService.navigate('AddDev');
+    }
+
     renderItem = ({ item, index }) => {
       return (<View >
         <ListItem key={index} dataItem={item} isGrid={this.state.isSwitchOn} />
@@ -35,7 +39,7 @@ class Home extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-          <AppHeader title="Devs" rtTitle="Add" />
+          <AppHeader title="Devs" rtTitle="Add" rbtnOnPress={this.navigateToAddDev} />
           <FlatList
             keyExtractor={(item, index) => index.toString()}
             data={devList}
