@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   absoluteView: {
-    width: utilities.deviceWidth(),
+    width: utilities.deviceWidth,
     position: 'absolute',
     flexDirection: 'row',
     paddingHorizontal: 10,

@@ -4,7 +4,7 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import styles from './style';
 import navigationService from '../../../../utilities/navigationService';
 
-const renderTechnology = (technologies) => {
+export const renderTechnology = (technologies) => {
   return technologies.map((item, index) => (
     <Image
       key={index}
