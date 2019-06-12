@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   styleTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     fontStyle: 'italic',
   },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   styleExpText: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     width: 40,
     textAlign: 'center',

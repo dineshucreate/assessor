@@ -13,8 +13,8 @@ export default class AddDev extends Component {
       name: '',
       technologies: [
         'iOS',
-        'React Native',
         'Android',
+        'React Native',
       ],
     };
   }

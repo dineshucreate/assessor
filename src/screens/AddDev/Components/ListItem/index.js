@@ -26,7 +26,9 @@ export default class ListItem extends Component {
 
    decrementExp = () => {
      const { exp } = this.state;
-     this.setState({ exp: exp - 0.5 });
+     if (exp > 0) {
+       this.setState({ exp: exp - 0.5 });
+     }
    };
 
    render() {
