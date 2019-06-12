@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modalbox';
 import { BallIndicator } from 'react-native-indicators';
-import { Colors } from './Colors';
+import { Colors } from '../../utilities/Colors';
+import { styles } from './styles';
+import { updateLoader } from './action';
 
-export default class LoadingView extends Component {
+class LoadingView extends Component {
     static defaultProps = {
       message: 'Loading...',
     };
 
-    showModalView() {
-      this.loader.open();
-    }
-    hideModalView() {
-      this.loader.close();
+    componentDidMount() {
+      const { updateLoaderInstance } = this.props;
+      updateLoaderInstance(this.loader);
     }
 
     render() {
       const { message } = this.props;
-
       return (
         <Modal
           style={styles.loadingModal}
@@ -45,9 +45,11 @@ export default class LoadingView extends Component {
 
 LoadingView.propTypes = {
   message: PropTypes.string,
+  updateLoaderInstance: PropTypes.func,
 };
 
-const styles = StyleSheet.create({
-  loadingModal: { height: 80, width: 100, padding: 5, borderRadius: 10 },
-  loadingText: { color: Colors.PrimaryAppColor, alignSelf: 'center' },
+const mapDispatchToProps = (dispatch) => ({
+  updateLoaderInstance: (loaderInstance) => dispatch(updateLoader(loaderInstance)),
 });
+
+export default connect(null, mapDispatchToProps)(LoadingView);

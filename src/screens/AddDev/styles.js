@@ -8,10 +8,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 20,
   },
   devPic: {
-    height: 120,
-    width: 120,
+    height: 100,
+    width: 100,
   },
   nameContainer: {
     height: 80,
