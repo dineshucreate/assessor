@@ -1,39 +1,41 @@
 import React from 'react';
 import { Text, TextInput, View, TouchableOpacity, Button } from 'react-native';
 import firebase from 'react-native-firebase';
-import PropTypes from 'prop-types';
 import LoadingView from '../../utilities/loaderView';
 import { LOGIN, SIGN_UP } from './constants';
 import styles from './style';
+import navigationService from '../../utilities/navigationService';
 
 class SignUp extends React.Component {
     state = { email: 'csegurpreet@gmail.com', password: '12345678', errorMessage: null }
 
     handleSignUp = () => {
-      const { navigation } = this.props;
       this.loader.showModalView();
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-          navigation.navigate('Home');
+          navigationService.navigate('Home');
           this.loader.hideModalView();
         })
         .catch((error) => {
           this.setState({ errorMessage: error.message });
           this.loader.hideModalView();
         });
-    }
+    };
 
-    renderLoadingView() {
+    navigateToLogin = () => {
+      navigationService.navigate('Login');
+    };
+
+    renderLoadingView = () => {
       return (
         <LoadingView ref={(loaderRef) => { this.loader = loaderRef; }} message="Signing up..." parentList={this} />
       );
-    }
+    };
 
     render() {
       const { errorMessage, email, password } = this.state;
-      const { navigation } = this.props;
       return (
         <View style={styles.container}>
           {errorMessage &&
@@ -62,7 +64,7 @@ class SignUp extends React.Component {
           </TouchableOpacity>
           <Button
             title={LOGIN}
-            onPress={() => navigation.navigate('Login')}
+            onPress={this.navigateToLogin}
           />
           {
             this.renderLoadingView()
@@ -71,9 +73,5 @@ class SignUp extends React.Component {
       );
     }
 }
-
-SignUp.propTypes = {
-  navigation: PropTypes.object,
-};
 
 export default SignUp;

@@ -14,7 +14,7 @@ export default class DevProfile extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <AppHeader title="Profile" />
+        <AppHeader showBackButton title="Profile" />
         <View style={styles.subContainer}>
           <Image
             style={styles.devPic}

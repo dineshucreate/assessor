@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import styles from './style';
+import navigationService from '../../../../utilities/navigationService';
 
 const renderTechnology = (technologies) => {
   return technologies.map((item, index) => (
@@ -13,13 +14,13 @@ const renderTechnology = (technologies) => {
   )
   );
 };
-const goToDevProfile = (navigation) => {
-  navigation.navigate('DevProfile');
+const goToDevProfile = () => {
+  navigationService.navigate('DevProfile');
 };
 
 const ListItem = (props) => {
-  const { dataItem: { name, totalExperience, pic, technologies }, navigation } = props;
-  return (<TouchableOpacity style={styles.styleMainContainer} onPress={() => goToDevProfile(navigation)}>
+  const { dataItem: { name, totalExperience, pic, technologies } } = props;
+  return (<TouchableOpacity style={styles.styleMainContainer} onPress={goToDevProfile}>
     <Image
       style={styles.styleImage}
       resizeMode="stretch"
@@ -37,7 +38,6 @@ const ListItem = (props) => {
 
 ListItem.propTypes = {
   dataItem: PropTypes.object,
-  navigation: PropTypes.object,
 };
 
 export default ListItem;

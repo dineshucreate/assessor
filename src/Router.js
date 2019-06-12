@@ -15,7 +15,6 @@ const Components = {
 
 const AppStack = createStackNavigator(Components,
   {
-    initialRouteName: 'Welcome',
     headerMode: 'none',
   }
 );

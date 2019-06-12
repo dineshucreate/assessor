@@ -1,12 +1,11 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import PropTypes from 'prop-types';
-import { StackActions, NavigationActions } from 'react-navigation';
 import firebase from 'react-native-firebase';
 import styles from './style';
 import ListItem from './Components/ListItem';
 import { devList } from './devList';
 import AppHeader from '../../components/AppHeader';
+import navigationService from '../../utilities/navigationService';
 
 
 class Home extends React.Component {
@@ -24,17 +23,12 @@ class Home extends React.Component {
 
     signOut = () => {
       firebase.auth().signOut();
-      const resetAction = StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Login' })],
-      });
-      this.props.navigation.dispatch(resetAction);
+      navigationService.reset('Login');
     }
 
     renderItem = ({ item, index }) => {
-      const { navigation } = this.props;
       return (<View >
-        <ListItem navigation={navigation} key={index} dataItem={item} isGrid={this.state.isSwitchOn} />
+        <ListItem key={index} dataItem={item} isGrid={this.state.isSwitchOn} />
       </View>);
     };
 
@@ -53,9 +47,5 @@ class Home extends React.Component {
       );
     }
 }
-
-Home.propTypes = {
-  navigation: PropTypes.object,
-};
 
 export default Home;

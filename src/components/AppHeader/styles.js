@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Colors } from '../../utilities/Colors';
+import utilities from '../../utilities';
 
 export const styles = StyleSheet.create({
   topBar: {
@@ -9,10 +10,19 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  add: {
-    backgroundColor: Colors.PrimaryAppColor,
+  absoluteView: {
+    width: utilities.deviceWidth(),
     position: 'absolute',
-    right: 20,
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  btnHitSlop: {
+    top: 15,
+    bottom: 15,
+    left: 15,
+    right: 15,
   },
   titleText: {
     fontSize: 18,
@@ -21,5 +31,7 @@ export const styles = StyleSheet.create({
   },
   addText: {
     color: 'white',
+    fontSize: 18,
+    fontWeight: '600',
   },
 });
