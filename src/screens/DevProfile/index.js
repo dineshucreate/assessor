@@ -6,12 +6,17 @@ import AppHeader from '../../components/AppHeader';
 import CButton from '../../components/CButton';
 import { renderTechnology } from '../Home/Components/ListItem';
 import { DESIGNATION, TOTAL_EXP, TECHNOLOGIES, START, DEV_PROFILE } from './constant';
+import navigationService from '../../utilities/navigationService';
 
 export default class DevProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
     };
+  }
+
+  navigateToReview = () => {
+    navigationService.navigate('Review');
   }
 
   render() {
@@ -52,7 +57,7 @@ export default class DevProfile extends Component {
                 {renderTechnology(devList[0].technologies)}
               </View>
             </View>
-            <CButton label={START} btnStyle={styles.button} />
+            <CButton label={START} btnStyle={styles.button} onPress={this.navigateToReview} />
           </View>
         </View>
       </View>
