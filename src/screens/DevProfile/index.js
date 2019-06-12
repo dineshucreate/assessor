@@ -6,6 +6,7 @@ import AppHeader from '../../components/AppHeader';
 import CButton from '../../components/CButton';
 import { renderTechnology } from '../Home/Components/ListItem';
 import { DESIGNATION, TOTAL_EXP, TECHNOLOGIES, START, DEV_PROFILE } from './constant';
+import navigationService from '../../utilities/navigationService';
 
 export default class DevProfile extends Component {
   constructor(props) {
@@ -14,10 +15,18 @@ export default class DevProfile extends Component {
     };
   }
 
+  goBack = () => {
+    navigationService.goBack();
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <AppHeader showBackButton title={DEV_PROFILE} />
+        <AppHeader
+          showBackButton
+          lbtnOnPress={this.goBack}
+          title={DEV_PROFILE}
+        />
         <View style={styles.subContainer}>
           <View style={styles.cardView}>
             <Image

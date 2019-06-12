@@ -19,9 +19,14 @@ export default class AddDev extends Component {
     };
   }
 
-  save = () => {
+  saveAndGoBack = () => {
     navigationService.goBack();
-  }
+  };
+
+  goBack = () => {
+    navigationService.goBack();
+  };
+
   renderItem = ({ item, index }) => {
     return (<View >
       <ListItem key={index} dataItem={item} isGrid={this.state.isSwitchOn} />
@@ -32,7 +37,13 @@ export default class AddDev extends Component {
     const { name, technologies } = this.state;
     return (
       <View style={styles.container}>
-        <AppHeader showBackButton title="Add Dev" rtTitle="Save" rbtnOnPress={this.save} />
+        <AppHeader
+          showBackButton
+          title="Add Dev"
+          rtTitle="Save"
+          lbtnOnPress={this.goBack}
+          rbtnOnPress={this.saveAndGoBack}
+        />
         <View style={styles.subContainer}>
           <Image
             style={styles.devPic}

@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     width: 40,
     textAlign: 'center',
   },
-
 });
 
 export default styles;

@@ -3,23 +3,18 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import BackButton from 'react-native-vector-icons/Ionicons';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
-import navigationService from '../../utilities/navigationService';
 
-const goBack = () => {
-  navigationService.goBack();
-};
-
-const AppHeader = ({ title, rtTitle, showBackButton, rbtnOnPress }) => {
+const AppHeader = ({ title, rtTitle, showBackButton, rbtnOnPress, lbtnOnPress }) => {
   return (
     <View style={styles.topBar}>
       <Text style={styles.titleText}>{title}</Text>
       <View style={styles.absoluteView}>
-        {showBackButton ? <TouchableOpacity
-          onPress={goBack}
+        <TouchableOpacity
+          onPress={lbtnOnPress}
           hitSlop={styles.btnHitSlop}
         >
-          <BackButton size={30} name="ios-arrow-back" color="white" />
-        </TouchableOpacity> : <View />}
+          <BackButton size={30} name={showBackButton ? 'ios-arrow-back' : 'ios-log-out'} color="white" />
+        </TouchableOpacity>
         {rtTitle && <TouchableOpacity
           onPress={rbtnOnPress}
           hitSlop={styles.btnHitSlop}
@@ -36,6 +31,7 @@ AppHeader.propTypes = {
   rtTitle: PropTypes.string,
   showBackButton: PropTypes.bool,
   rbtnOnPress: PropTypes.func,
+  lbtnOnPress: PropTypes.func,
 };
 
 export default AppHeader;
