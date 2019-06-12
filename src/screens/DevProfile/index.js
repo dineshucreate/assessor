@@ -18,6 +18,9 @@ export default class DevProfile extends Component {
   goBack = () => {
     navigationService.goBack();
   };
+  navigateToReview = () => {
+    navigationService.navigate('Review');
+  }
 
   render() {
     return (
@@ -61,7 +64,7 @@ export default class DevProfile extends Component {
                 {renderTechnology(devList[0].technologies)}
               </View>
             </View>
-            <CButton label={START} btnStyle={styles.button} />
+            <CButton label={START} btnStyle={styles.button} onPress={this.navigateToReview} />
           </View>
         </View>
       </View>

@@ -5,6 +5,7 @@ import SignUp from './screens/Signup';
 import Welcome from './screens/Welcome';
 import DevProfile from './screens/DevProfile';
 import AddDev from './screens/AddDev';
+import Review from './screens/Review';
 
 const Components = {
   Welcome,
@@ -13,6 +14,7 @@ const Components = {
   Home,
   DevProfile,
   AddDev,
+  Review,
 };
 
 const AppStack = createStackNavigator(Components,
