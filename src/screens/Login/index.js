@@ -1,27 +1,31 @@
+/* eslint-disable global-require */
 import React from 'react';
-import { Text, TextInput, View, Button, TouchableOpacity } from 'react-native';
+import { Text, TextInput, View, Image, Button } from 'react-native';
 import firebase from 'react-native-firebase';
-import LoadingView from '../../utilities/loaderView';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { LOGIN, SIGN_UP } from './constants';
 import styles from './style';
 import navigationService from '../../utilities/navigationService';
+import CButton from '../../components/CButton';
 
 class Login extends React.Component {
   state = { email: 'csegurpreet@gmail.com', password: '12345678', errorMessage: null }
 
   handleLogin = () => {
     const { email, password } = this.state;
-    this.loader.showModalView();
+    const { loader } = this.props;
+    loader.open();
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         navigationService.navigate('Home');
-        this.loader.hideModalView();
+        loader.close();
       })
       .catch((error) => {
         this.setState({ errorMessage: error.message });
-        this.loader.hideModalView();
+        loader.close();
       });
   };
 
@@ -29,50 +33,56 @@ class Login extends React.Component {
     navigationService.navigate('SignUp');
   };
 
-  renderLoadingView = () => {
-    return (
-      <LoadingView ref={(loaderRef) => { this.loader = loaderRef; }} message="Logging In..." parentList={this} />
-    );
-  };
-
   render() {
     const { errorMessage, email, password } = this.state;
     return (
       <View style={styles.container}>
-        {errorMessage &&
-          <Text style={{ color: 'red' }}>
-            {errorMessage}
-          </Text>}
-        <TextInput
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="Email"
-          onChangeText={(text) => this.setState({ email: text })}
-          value={email}
-          clearButtonMode="always"
-        />
-        <TextInput
-          secureTextEntry
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="Password"
-          onChangeText={(text) => this.setState({ password: text })}
-          value={password}
-          clearButtonMode="always"
-        />
-        <TouchableOpacity style={styles.button} onPress={this.handleLogin} >
-          <Text style={styles.buttonText} >{LOGIN}</Text>
-        </TouchableOpacity>
-        <Button
-          title={SIGN_UP}
-          onPress={this.navigateToSignUp}
-        />
-        {
-          this.renderLoadingView()
-        }
+        <View style={styles.cardView}>
+          <Image
+            style={styles.appIconImage}
+            source={require('../../assets/app_icon.png')}
+          />
+          {errorMessage &&
+            <Text style={styles.errMsg}>
+              {errorMessage}
+            </Text>}
+          <TextInput
+            style={styles.textInput}
+            autoCapitalize="none"
+            placeholder="Email"
+            onChangeText={(text) => this.setState({ email: text })}
+            value={email}
+            clearButtonMode="always"
+          />
+          <TextInput
+            secureTextEntry
+            style={styles.textInput}
+            autoCapitalize="none"
+            placeholder="Password"
+            onChangeText={(text) => this.setState({ password: text })}
+            value={password}
+            clearButtonMode="always"
+          />
+          <CButton
+            label={LOGIN}
+            btnStyle={styles.button}
+            onPress={this.handleLogin}
+          />
+          <Button
+            title={SIGN_UP}
+            onPress={this.navigateToSignUp}
+          />
+        </View>
       </View>
     );
   }
 }
+const mapStateToProps = (state) => ({
+  loader: state.welcomeReducer.loader,
+});
 
-export default Login;
+Login.propTypes = {
+  loader: PropTypes.object,
+};
+
+export default connect(mapStateToProps)(Login);

@@ -31,7 +31,7 @@ const ListItem = (props) => {
       <View style={styles.styleTechnologies} >
         { renderTechnology(technologies) }
       </View>
-      <Text style={styles.styleExperienceText}>Total Experience: {totalExperience}</Text>
+      <Text style={styles.styleExperienceText}>Experience: {totalExperience}</Text>
     </View>
   </TouchableOpacity>);
 };

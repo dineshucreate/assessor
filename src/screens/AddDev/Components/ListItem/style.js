@@ -1,7 +1,7 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Colors } from '../../../../utilities/Colors';
+import utilities from '../../../../utilities';
 
-const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
 
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.PrimaryAppColor,
     borderRadius: 10,
-    width: width - 30,
+    width: utilities.deviceWidth - 30,
   },
   styleInfoContainer: {
     backgroundColor: 'white',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   styleTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     fontStyle: 'italic',
   },
@@ -48,11 +48,8 @@ const styles = StyleSheet.create({
     left: 10,
     right: 10,
   },
-  styleArrowButtons: {
-    marginHorizontal: 10,
-  },
   styleExpText: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     width: 40,
     textAlign: 'center',

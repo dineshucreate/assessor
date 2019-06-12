@@ -7,9 +7,9 @@ import DevProfile from './screens/DevProfile';
 import AddDev from './screens/AddDev';
 
 const Components = {
-  Welcome,
-  SignUp,
   Login,
+  SignUp,
+  Welcome,
   Home,
   DevProfile,
   AddDev,

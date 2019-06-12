@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 import utilities from '../../utilities';
 
+const devPicHeight = 100;
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -11,11 +13,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   devPic: {
-    height: 100,
-    width: 100,
+    height: devPicHeight,
+    width: devPicHeight,
     position: 'absolute',
-    top: -50,
-    left: (utilities.deviceWidth * 0.45) - 50,
+    top: -devPicHeight / 2,
+    left: (utilities.deviceWidth * 0.45) - (devPicHeight / 2),
   },
   devNameText: {
     fontSize: 20,

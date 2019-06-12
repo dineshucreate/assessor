@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, TouchableOpacity } from 'react-native';
-import Arrow from 'react-native-vector-icons/AntDesign';
-import Check from 'react-native-vector-icons/Entypo';
+import Arrow from 'react-native-vector-icons/Ionicons';
+import UnCheck from 'react-native-vector-icons/Entypo';
+import Check from 'react-native-vector-icons/AntDesign';
 import styles from './style';
 
 export default class ListItem extends Component {
@@ -34,22 +35,26 @@ export default class ListItem extends Component {
      const { exp, isChecked } = this.state;
      return (<View style={styles.styleMainContainer} >
        <View style={styles.styleInfoContainer}>
-         <TouchableOpacity style={styles.styleCheckbox} hitSlop={styles.btnHitSlop} onPress={this.checkClicked} >
+         <TouchableOpacity
+           style={styles.styleCheckbox}
+           hitSlop={styles.btnHitSlop}
+           onPress={this.checkClicked}
+         >
            {isChecked ?
-             <Arrow size={25} name="checkcircleo" color="black" />
+             <Check size={25} name="checkcircleo" color="black" />
              :
-             <Check size={25} name="circle" color="black" />
+             <UnCheck size={25} name="circle" color="black" />
            }
          </TouchableOpacity>
          <Text style={styles.styleTitle}>{dataItem}</Text>
          { isChecked &&
          <View style={styles.styleExperience}>
-           <TouchableOpacity style={styles.styleArrowButtons} hitSlop={styles.btnHitSlop} onPress={this.decrementExp} >
-             <Arrow size={25} name="down" color="black" />
+           <TouchableOpacity hitSlop={styles.btnHitSlop} onPress={this.decrementExp} >
+             <Arrow size={25} name="md-arrow-dropdown-circle" color="black" />
            </TouchableOpacity>
            <Text style={styles.styleExpText}>{exp}</Text>
-           <TouchableOpacity style={styles.styleArrowButtons} hitSlop={styles.btnHitSlop} onPress={this.incrementExp} >
-             <Arrow size={25} name="up" color="black" />
+           <TouchableOpacity hitSlop={styles.btnHitSlop} onPress={this.incrementExp} >
+             <Arrow size={25} name="md-arrow-dropup-circle" color="black" />
            </TouchableOpacity>
          </View>
          }
@@ -59,6 +64,6 @@ export default class ListItem extends Component {
 }
 
 ListItem.propTypes = {
-  dataItem: PropTypes.object,
+  dataItem: PropTypes.string,
 };
 

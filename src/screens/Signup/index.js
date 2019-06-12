@@ -1,26 +1,30 @@
+/* eslint-disable global-require */
 import React from 'react';
-import { Text, TextInput, View, TouchableOpacity, Button } from 'react-native';
+import { Text, TextInput, View, Image, Button } from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import firebase from 'react-native-firebase';
-import LoadingView from '../../utilities/loaderView';
 import { LOGIN, SIGN_UP } from './constants';
 import styles from './style';
 import navigationService from '../../utilities/navigationService';
+import CButton from '../../components/CButton';
 
 class SignUp extends React.Component {
     state = { email: 'csegurpreet@gmail.com', password: '12345678', errorMessage: null }
 
     handleSignUp = () => {
-      this.loader.showModalView();
+      const { loader } = this.props;
+      loader.open();
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
           navigationService.navigate('Home');
-          this.loader.hideModalView();
+          loader.close();
         })
         .catch((error) => {
           this.setState({ errorMessage: error.message });
-          this.loader.hideModalView();
+          loader.close();
         });
     };
 
@@ -28,50 +32,52 @@ class SignUp extends React.Component {
       navigationService.navigate('Login');
     };
 
-    renderLoadingView = () => {
-      return (
-        <LoadingView ref={(loaderRef) => { this.loader = loaderRef; }} message="Signing up..." parentList={this} />
-      );
-    };
-
     render() {
       const { errorMessage, email, password } = this.state;
       return (
         <View style={styles.container}>
-          {errorMessage &&
-            <Text style={{ color: 'red' }}>
+          <View style={styles.cardView}>
+            <Image
+              style={styles.appIconImage}
+              source={require('../../assets/app_icon.png')}
+            />
+            {errorMessage &&
+            <Text style={styles.errMsg}>
               {errorMessage}
             </Text>}
-          <TextInput
-            placeholder="Email"
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={(text) => this.setState({ email: text })}
-            value={email}
-            clearButtonMode="always"
-          />
-          <TextInput
-            secureTextEntry
-            placeholder="Password"
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={(text) => this.setState({ password: text })}
-            value={password}
-            clearButtonMode="always"
-          />
-          <TouchableOpacity style={styles.button} onPress={this.handleSignUp} >
-            <Text style={styles.buttonText} >{SIGN_UP}</Text>
-          </TouchableOpacity>
-          <Button
-            title={LOGIN}
-            onPress={this.navigateToLogin}
-          />
-          {
-            this.renderLoadingView()
-          }
+            <TextInput
+              placeholder="Email"
+              autoCapitalize="none"
+              style={styles.textInput}
+              onChangeText={(text) => this.setState({ email: text })}
+              value={email}
+              clearButtonMode="always"
+            />
+            <TextInput
+              secureTextEntry
+              placeholder="Password"
+              autoCapitalize="none"
+              style={styles.textInput}
+              onChangeText={(text) => this.setState({ password: text })}
+              value={password}
+              clearButtonMode="always"
+            />
+            <CButton btnStyle={styles.button} label={SIGN_UP} onPress={this.handleSignUp} />
+            <Button
+              title={LOGIN}
+              onPress={this.navigateToLogin}
+            />
+          </View>
         </View>
       );
     }
 }
+const mapStateToProps = (state) => ({
+  loader: state.welcomeReducer.loader,
+});
 
-export default SignUp;
+SignUp.propTypes = {
+  loader: PropTypes.object,
+};
+
+export default connect(mapStateToProps)(SignUp);
