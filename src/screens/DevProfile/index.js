@@ -15,6 +15,9 @@ export default class DevProfile extends Component {
     };
   }
 
+  goBack = () => {
+    navigationService.goBack();
+  };
   navigateToReview = () => {
     navigationService.navigate('Review');
   }
@@ -22,7 +25,11 @@ export default class DevProfile extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <AppHeader showBackButton title={DEV_PROFILE} />
+        <AppHeader
+          showBackButton
+          lbtnOnPress={this.goBack}
+          title={DEV_PROFILE}
+        />
         <View style={styles.subContainer}>
           <View style={styles.cardView}>
             <Image

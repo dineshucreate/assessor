@@ -39,7 +39,12 @@ class Home extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-          <AppHeader title="Devs" rtTitle="Add" rbtnOnPress={this.navigateToAddDev} />
+          <AppHeader
+            title="Devs"
+            rtTitle="Add"
+            lbtnOnPress={this.signOut}
+            rbtnOnPress={this.navigateToAddDev}
+          />
           <FlatList
             keyExtractor={(item, index) => index.toString()}
             data={devList}
