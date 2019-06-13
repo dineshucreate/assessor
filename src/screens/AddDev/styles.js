@@ -5,9 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  subContainer: {
-    flex: 1,
-    justifyContent: 'center',
+  scrollContentContainer: {
     alignItems: 'center',
     paddingVertical: 20,
   },

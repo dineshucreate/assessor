@@ -14,6 +14,7 @@ export default class Review extends Component {
   }
 
   save = () => {
+
   }
 
   goBack = () => {
@@ -26,7 +27,6 @@ export default class Review extends Component {
   };
 
   render() {
-    // const { } = this.state;
     return (
       <View style={styles.container}>
         <AppHeader showBackButton title="Review" rtTitle="Submit" rbtnOnPress={this.save} lbtnOnPress={this.goBack} />
@@ -43,7 +43,7 @@ export default class Review extends Component {
               { title: 'React Native', data: ['JSX', 'HOC', 'Redux'] },
             ]}
             renderSectionHeader={({ section }) => <Text style={styles.SectionHeader}> {section.title} </Text>}
-            renderItem={({ item, index, section }) => this.renderItem({ item, index })}
+            renderItem={this.renderItem}
             keyExtractor={(item, index) => index}
           />
         </View>

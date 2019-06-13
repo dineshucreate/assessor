@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TextInput, FlatList, Alert } from 'react-native';
+import { View, Image, Text, TextInput, ScrollView, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import firebase from 'react-native-firebase';
@@ -63,14 +63,22 @@ class AddDev extends Component {
     navigationService.goBack();
   };
 
-  renderItem = ({ item, index }) => {
-    return (<View >
-      <ListItem key={index} dataItem={item} add={(value, isChecked) => this.addExperience(index, value, isChecked)} />
-    </View>);
+  renderTechnologies = () => {
+    const { technologies } = this.state;
+    return technologies.map((item, index) => {
+      return this.renderItem(item, index);
+    });
+  }
+  renderItem = (item, index) => {
+    return (<ListItem
+      key={index}
+      dataItem={item}
+      add={(value, isChecked) => this.addExperience(index, value, isChecked)}
+    />);
   };
 
   render() {
-    const { name, email, technologies } = this.state;
+    const { name, email } = this.state;
     return (
       <View style={styles.container}>
         <AppHeader
@@ -80,7 +88,10 @@ class AddDev extends Component {
           lbtnOnPress={this.goBack}
           rbtnOnPress={this.saveAndGoBack}
         />
-        <View style={styles.subContainer}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.scrollContentContainer}
+        >
           <Image
             style={styles.devPic}
             source={{ uri: devList[0].pic }}
@@ -88,7 +99,7 @@ class AddDev extends Component {
           />
           <View style={styles.nameContainer}>
             <Text style={styles.devNameText}>
-                Name
+              Name
             </Text>
             <TextInput
               style={styles.devNameTextInput}
@@ -101,7 +112,7 @@ class AddDev extends Component {
           </View>
           <View style={styles.nameContainer}>
             <Text style={styles.devNameText}>
-                Email
+              Email
             </Text>
             <TextInput
               style={styles.devNameTextInput}
@@ -113,15 +124,10 @@ class AddDev extends Component {
             />
           </View>
           <Text style={styles.styleInsturctions}>
-                Select technology and specify experience in years
+            Select technology and specify experience in years
           </Text>
-          <FlatList
-            keyExtractor={(item, index) => index.toString()}
-            data={technologies}
-            numColumns={1}
-            renderItem={this.renderItem}
-          />
-        </View>
+          {this.renderTechnologies()}
+        </ScrollView>
       </View>
     );
   }
