@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.PrimaryAppColor,
     borderRadius: 10,
-    width: width - 30,
+    width: width - 15,
   },
   styleInfoContainer: {
     backgroundColor: 'white',

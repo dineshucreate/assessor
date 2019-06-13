@@ -15,7 +15,7 @@ export default class Review extends Component {
   save = () => {
   }
   renderItem = ({ item, index }) => {
-    return (<View >
+    return (<View style={{ justifyContent: 'center', alignItems: 'center' }}>
       <ListItem key={index} dataItem={item} isGrid={this.state.isSwitchOn} />
     </View>);
   };
@@ -31,13 +31,14 @@ export default class Review extends Component {
                 Select topic and specify rating from 0 to 10
           </Text>
           <SectionList
+            showsVerticalScrollIndicator={false}
             sections={[
               { title: 'iOS', data: ['Auto Layout', 'Core Data', 'Cocoa pods'] },
               { title: 'Android', data: ['UI', 'MVC', 'Fragments'] },
               { title: 'React Native', data: ['JSX', 'HOC', 'Redux'] },
             ]}
             renderSectionHeader={({ section }) => <Text style={styles.SectionHeader}> {section.title} </Text>}
-            renderItem={({ item, index }) => this.renderItem({ item, index })}
+            renderItem={({ item, index, section }) => this.renderItem({ item, index })}
             keyExtractor={(item, index) => index}
           />
         </View>

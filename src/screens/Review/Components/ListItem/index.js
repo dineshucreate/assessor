@@ -42,9 +42,9 @@ export default class ListItem extends Component {
        <View style={styles.styleInfoContainer}>
          <TouchableOpacity style={styles.styleCheckbox} hitSlop={styles.btnHitSlop} onPress={this.checkClicked} >
            {isChecked ?
-             <Check size={25} name="checkcircleo" color="black" />
+             <Check size={25} name="checkcircleo" color={Colors.PrimaryAppColor} />
              :
-             <UnCheck size={25} name="circle" color="black" />
+             <UnCheck size={25} name="circle" color={Colors.PrimaryAppColor} />
            }
          </TouchableOpacity>
          <Text style={styles.styleTitle}>{dataItem}</Text>

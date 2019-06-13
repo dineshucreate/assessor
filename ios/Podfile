@@ -7,13 +7,13 @@ target 'Assessor' do
 
   # Pods for Assessor
 
-  pod 'Firebase/Core', '~> 6.2.0'
-  pod 'Firebase/Auth', '~> 6.2.0'
-  pod 'Firebase/Firestore', '~> 6.2.0'
-
+ # Required by RNFirebase
+  pod 'Firebase/Core', '~> 5.20.2'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
 #  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
-#  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+# pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'AssessorTests' do
     inherit! :search_paths

@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
   subContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   devPic: {
     height: 120,
@@ -39,16 +38,19 @@ export const styles = StyleSheet.create({
   styleTitle: {
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
     marginVertical: 15,
   },
   styleInsturctions: {
     fontSize: 15,
+    textAlign: 'center',
     marginVertical: 15,
   },
   SectionHeader: {
     backgroundColor: Colors.PrimaryAppColor,
     fontSize: 20,
-    padding: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
     color: '#fff',
     fontWeight: 'bold',
   },

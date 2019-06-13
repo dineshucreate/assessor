@@ -269,9 +269,10 @@ StructuredQuery DecodeStructuredQuery(
 
 }  // namespace
 
-Serializer::Serializer(model::DatabaseId database_id)
-    : database_id_(std::move(database_id)),
-      database_name_(EncodeDatabaseId(database_id_).CanonicalString()) {
+Serializer::Serializer(
+    const firebase::firestore::model::DatabaseId& database_id)
+    : database_id_(database_id),
+      database_name_(EncodeDatabaseId(database_id).CanonicalString()) {
 }
 
 void Serializer::FreeNanopbMessage(const pb_field_t fields[],
