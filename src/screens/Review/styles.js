@@ -41,6 +41,10 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 15,
   },
+  styleInsturctions: {
+    fontSize: 15,
+    marginVertical: 15,
+  },
   SectionHeader: {
     backgroundColor: Colors.PrimaryAppColor,
     fontSize: 20,

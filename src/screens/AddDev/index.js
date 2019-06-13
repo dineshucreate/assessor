@@ -52,6 +52,9 @@ export default class AddDev extends Component {
               clearButtonMode="always"
             />
           </View>
+          <Text style={styles.styleInsturctions}>
+                Select technology and specify experience in years
+          </Text>
           <FlatList
             keyExtractor={(item, index) => index.toString()}
             data={technologies}

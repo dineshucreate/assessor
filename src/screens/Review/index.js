@@ -27,6 +27,9 @@ export default class Review extends Component {
         <AppHeader showBackButton title="Review" rtTitle="Submit" rbtnOnPress={this.save} />
         <View style={styles.subContainer}>
           <Text style={styles.styleTitle}>Gurpreet Singh</Text>
+          <Text style={styles.styleInsturctions}>
+                Select topic and specify rating from 0 to 10
+          </Text>
           <SectionList
             sections={[
               { title: 'iOS', data: ['Auto Layout', 'Core Data', 'Cocoa pods'] },

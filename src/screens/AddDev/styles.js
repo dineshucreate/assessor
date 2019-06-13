@@ -28,6 +28,12 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginRight: 15,
   },
+  styleInsturctions: {
+    fontSize: 17,
+    color: 'black',
+    textAlign: 'center',
+    marginRight: 15,
+  },
   devNameTextInput: {
     height: 40,
     width: 200,
