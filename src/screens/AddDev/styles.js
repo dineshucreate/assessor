@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import utilities from '../../utilities';
 
 export const styles = StyleSheet.create({
   container: {
@@ -15,11 +16,11 @@ export const styles = StyleSheet.create({
     width: 100,
   },
   nameContainer: {
-    height: 80,
+    height: 60,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    padding: 20,
+    paddingTop: 10,
   },
   devNameText: {
     fontSize: 18,
@@ -33,10 +34,11 @@ export const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'center',
     marginRight: 15,
+    marginTop: 25,
   },
   devNameTextInput: {
     height: 40,
-    width: 200,
+    width: utilities.deviceWidth - 100,
     borderColor: 'black',
     borderWidth: 1.5,
     borderRadius: 20,

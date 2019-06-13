@@ -17,19 +17,34 @@ export default class ListItem extends Component {
   }
 
   checkClicked = () => {
-    const { isChecked } = this.state;
-    this.setState({ isChecked: !isChecked });
+    const { isChecked, exp } = this.state;
+    const { add } = this.props;
+    this.setState({ isChecked: !isChecked },
+      () => {
+        const { isChecked: isCh } = this.state;
+        add(exp, isCh);
+      });
   };
 
    incrementExp = () => {
-     const { exp } = this.state;
-     this.setState({ exp: exp + 0.5 });
+     const { exp, isChecked } = this.state;
+     const { add } = this.props;
+     this.setState({ exp: exp + 0.5 },
+       () => {
+         const { exp: ex } = this.state;
+         add(ex, isChecked);
+       });
    };
 
    decrementExp = () => {
-     const { exp } = this.state;
+     const { exp, isChecked } = this.state;
+     const { add } = this.props;
      if (exp > 0) {
-       this.setState({ exp: exp - 0.5 });
+       this.setState({ exp: exp - 0.5 },
+         () => {
+           const { exp: ex } = this.state;
+           add(ex, isChecked);
+         });
      }
    };
 
@@ -68,5 +83,6 @@ export default class ListItem extends Component {
 
 ListItem.propTypes = {
   dataItem: PropTypes.string,
+  add: PropTypes.func,
 };
 
