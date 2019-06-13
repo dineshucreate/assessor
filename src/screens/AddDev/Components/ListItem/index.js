@@ -5,6 +5,7 @@ import Arrow from 'react-native-vector-icons/Ionicons';
 import UnCheck from 'react-native-vector-icons/Entypo';
 import Check from 'react-native-vector-icons/AntDesign';
 import styles from './style';
+import { Colors } from '../../../../utilities/Colors';
 
 export default class ListItem extends Component {
   constructor(props) {
@@ -52,11 +53,11 @@ export default class ListItem extends Component {
          { isChecked &&
          <View style={styles.styleExperience}>
            <TouchableOpacity hitSlop={styles.btnHitSlop} onPress={this.decrementExp} >
-             <Arrow size={25} name="md-arrow-dropdown-circle" color="black" />
+             <Arrow size={25} name="md-arrow-dropdown-circle" color={Colors.PrimaryAppColor} />
            </TouchableOpacity>
            <Text style={styles.styleExpText}>{exp}</Text>
            <TouchableOpacity hitSlop={styles.btnHitSlop} onPress={this.incrementExp} >
-             <Arrow size={25} name="md-arrow-dropup-circle" color="black" />
+             <Arrow size={25} name="md-arrow-dropup-circle" color={Colors.PrimaryAppColor} />
            </TouchableOpacity>
          </View>
          }
