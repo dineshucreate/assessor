@@ -30,6 +30,20 @@ class Review extends Component {
     };
   }
 
+  getSectionIndex = (title) => {
+    switch (title) {
+      case 'iOS': {
+        return 0;
+      }
+      case 'Android': {
+        return 1;
+      }
+      default: {
+        return 2;
+      }
+    }
+  };
+
   saveAndGoBack = () => {
     const { navigation, addNewDev, loader } = this.props;
     const { sections } = this.state;
@@ -47,14 +61,7 @@ class Review extends Component {
   addRating = (index, section, value, isChecked) => {
     const { sections } = this.state;
     const sectionArray = [...sections];
-    let sectionIndex = 0;
-    if (section.title === 'iOS') {
-      sectionIndex = 0;
-    } else if (section.title === 'Android') {
-      sectionIndex = 1;
-    } else {
-      sectionIndex = 2;
-    }
+    const sectionIndex = this.getSectionIndex(section.title);
     sectionArray[sectionIndex].data[index].isChecked = isChecked;
     sectionArray[sectionIndex].data[index].rating = isChecked ? value : 0;
     this.setState({ sections: sectionArray });
