@@ -53,9 +53,7 @@ class Home extends React.Component {
     }
 
     renderItem = ({ item, index }) => {
-      return (<View >
-        <ListItem key={index} dataItem={item} isGrid={this.state.isSwitchOn} />
-      </View>);
+      return (<ListItem key={index} dataItem={item} isGrid={this.state.isSwitchOn} />);
     };
 
     render() {
@@ -69,10 +67,10 @@ class Home extends React.Component {
             rbtnOnPress={this.navigateToAddDev}
           />
           <FlatList
+            showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => index.toString()}
             data={data}
             numColumns={1}
-            style={styles.styleList}
             renderItem={this.renderItem}
           />
         </View>

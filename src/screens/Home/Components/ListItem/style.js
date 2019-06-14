@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'row',
     marginHorizontal: 15,
-    marginTop: 15,
+    marginVertical: 7,
     padding: 10,
     borderWidth: 2,
     borderColor: Colors.PrimaryAppColor,
