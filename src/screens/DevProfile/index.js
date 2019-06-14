@@ -20,7 +20,9 @@ export default class DevProfile extends Component {
     navigationService.goBack();
   };
   navigateToReview = () => {
-    navigationService.navigate('Review');
+    const { navigation } = this.props;
+    const { devData } = navigation.state.params;
+    navigationService.navigate('Review', { devData });
   }
 
   render() {

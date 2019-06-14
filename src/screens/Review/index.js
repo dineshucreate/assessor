@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, SectionList } from 'react-native';
+import PropTypes from 'prop-types';
 import { styles } from './styles';
 import AppHeader from '../../components/AppHeader';
 import ListItem from './Components/ListItem';
@@ -27,11 +28,13 @@ export default class Review extends Component {
   };
 
   render() {
+    const { navigation } = this.props;
+    const { devData } = navigation.state.params;
     return (
       <View style={styles.container}>
         <AppHeader showBackButton title="Review" rtTitle="Submit" rbtnOnPress={this.save} lbtnOnPress={this.goBack} />
         <View style={styles.subContainer}>
-          <Text style={styles.styleTitle}>Gurpreet Singh</Text>
+          <Text style={styles.styleTitle}>{devData.name}</Text>
           <Text style={styles.styleInsturctions}>
                 Select topic and specify rating from 0 to 10
           </Text>
@@ -51,3 +54,7 @@ export default class Review extends Component {
     );
   }
 }
+
+Review.propTypes = {
+  navigation: PropTypes.object,
+};
