@@ -31,8 +31,7 @@ export const styles = StyleSheet.create({
     fontSize: 17,
     color: 'black',
     textAlign: 'center',
-    marginRight: 15,
-    marginTop: 25,
+    margin: 20,
   },
   devNameTextInput: {
     height: 40,
@@ -40,6 +39,6 @@ export const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1.5,
     borderRadius: 20,
-    padding: 8,
+    paddingHorizontal: 20,
   },
 });
