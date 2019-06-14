@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   styleMainContainer: {
     flex: 1,
     backgroundColor: 'white',
+    justifyContent: 'space-between',
     flexDirection: 'row',
     marginHorizontal: 15,
     marginVertical: 7,
@@ -32,12 +33,22 @@ const styles = StyleSheet.create({
   styleExperienceText: {
     paddingVertical: 7,
   },
+  ratingText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    padding: 5,
+  },
   styleTechText: {
     fontSize: 16,
   },
   styleImage: {
     height: 70,
     width: 70,
+  },
+  ratingImage: {
+    height: 22,
+    width: 22,
   },
   styleImageTech: {
     height: 25,

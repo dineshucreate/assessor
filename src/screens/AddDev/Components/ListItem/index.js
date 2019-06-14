@@ -21,8 +21,8 @@ export default class ListItem extends Component {
     const { add } = this.props;
     this.setState({ isChecked: !isChecked },
       () => {
-        const { isChecked: isCh } = this.state;
-        add(exp, isCh);
+        const { isChecked: checked } = this.state;
+        add(exp, checked);
       });
   };
 
@@ -31,8 +31,8 @@ export default class ListItem extends Component {
      const { add } = this.props;
      this.setState({ exp: exp + 0.5 },
        () => {
-         const { exp: ex } = this.state;
-         add(ex, isChecked);
+         const { exp: experience } = this.state;
+         add(experience, isChecked);
        });
    };
 
@@ -42,8 +42,8 @@ export default class ListItem extends Component {
      if (exp > 0) {
        this.setState({ exp: exp - 0.5 },
          () => {
-           const { exp: ex } = this.state;
-           add(ex, isChecked);
+           const { exp: experience } = this.state;
+           add(experience, isChecked);
          });
      }
    };

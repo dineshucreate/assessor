@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React, { Component } from 'react';
 import { View, Image, Text } from 'react-native';
 import PropTypes from 'prop-types';
@@ -6,7 +7,7 @@ import { devList } from '../Home/devList';
 import AppHeader from '../../components/AppHeader';
 import CButton from '../../components/CButton';
 import { renderTechnology } from '../Home/Components/ListItem';
-import { DESIGNATION, TOTAL_EXP, TECHNOLOGIES, START, DEV_PROFILE } from './constant';
+import { TOTAL_EXP, TECHNOLOGIES, START, DEV_PROFILE, OVERALL_RATING } from './constant';
 import navigationService from '../../utilities/navigationService';
 
 export default class DevProfile extends Component {
@@ -48,26 +49,33 @@ export default class DevProfile extends Component {
             </Text>
             <View style={styles.rowView}>
               <Text style={styles.titleText}>
-                {DESIGNATION}
+                {TECHNOLOGIES}
               </Text>
-              <Text style={styles.infoText}>
-                Front End Dev.
-              </Text>
+              <View style={styles.techView}>
+                {renderTechnology(devData.technologies)}
+              </View>
             </View>
             <View style={styles.rowView}>
               <Text style={styles.titleText}>
                 {TOTAL_EXP}
               </Text>
               <Text style={styles.infoText}>
-                {totalExperience} years
+                {`${totalExperience} years`}
               </Text>
             </View>
             <View style={styles.rowView}>
               <Text style={styles.titleText}>
-                {TECHNOLOGIES}
+                {OVERALL_RATING}
               </Text>
-              <View style={styles.techView}>
-                {renderTechnology(devData.technologies)}
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Image
+                  style={styles.ratingImage}
+                  resizeMode="stretch"
+                  source={require('../../assets/rating.png')}
+                />
+                <Text style={styles.infoText}>
+                  {devData.rating}
+                </Text>
               </View>
             </View>
             <CButton label={START} btnStyle={styles.button} onPress={this.navigateToReview} />

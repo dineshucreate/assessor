@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Text, TextInput, ScrollView } from 'react-native';
+import firebase from 'react-native-firebase';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
@@ -15,28 +16,31 @@ class AddDev extends Component {
     this.state = {
       name: 'Jay Singh',
       email: 'Jay@ucreate.co.in',
-      technologies: ['iOS', 'Android', 'React Native'],
-      experience: [0, 0, 0],
+      technologies: [],
     };
   }
 
+  componentDidMount() {
+    firebase.firestore().collection('Technologies').get().then((snapshot) => {
+      const technologies = snapshot.docs.map((doc) => doc.data().data)[0];
+      this.setState({ technologies });
+    });
+  }
   saveAndGoBack = () => {
     const { loader, addNewDev } = this.props;
     loader.open();
-    const { name, email, technologies, experience } = this.state;
-    const tech = technologies.map((item, index) => {
-      return { tech: item, exp: experience[index] };
-    });
-    const techs = tech.filter((item) => item.exp > 0);
-    const devData = { name, email, technologies: techs };
+    const { name, email, technologies } = this.state;
+    const techs = technologies.filter((item) => item.isChecked);
+    const devData = { name, email, technologies: techs, rating: 0 };
     addNewDev(devData);
   };
 
   addExperience = (index, value, isChecked) => {
-    const { experience } = this.state;
-    const expArray = [...experience];
-    expArray[index] = isChecked ? value : 0;
-    this.setState({ experience: expArray });
+    const { technologies } = this.state;
+    const expArray = [...technologies];
+    expArray[index].isChecked = isChecked;
+    expArray[index].exp = isChecked ? value : 0;
+    this.setState({ technologies: expArray });
   };
 
   goBack = () => {
@@ -52,7 +56,7 @@ class AddDev extends Component {
   renderItem = (item, index) => {
     return (<ListItem
       key={index}
-      dataItem={item}
+      dataItem={item.name}
       add={(value, isChecked) => this.addExperience(index, value, isChecked)}
     />);
   };

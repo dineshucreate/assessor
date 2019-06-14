@@ -27,6 +27,11 @@ export const styles = StyleSheet.create({
     padding: 20,
     textAlign: 'center',
   },
+  ratingImage: {
+    height: 22,
+    width: 22,
+    marginRight: 5,
+  },
   rowView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
