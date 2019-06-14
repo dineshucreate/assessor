@@ -11,7 +11,7 @@ export default class ListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating: 5,
+      rating: 0,
       isChecked: false,
     };
   }
@@ -80,7 +80,7 @@ export default class ListItem extends Component {
 }
 
 ListItem.propTypes = {
-  dataItem: PropTypes.string,
+  dataItem: PropTypes.object,
   add: PropTypes.func,
 };
 
