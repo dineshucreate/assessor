@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import { styles } from './styles';
 import { devList } from '../Home/devList';
 import AppHeader from '../../components/AppHeader';
@@ -23,6 +24,9 @@ export default class DevProfile extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
+    const { devData } = navigation.state.params;
+    const totalExperience = devData.technologies.reduce((acc, val) => acc + val.exp, 0.0);
     return (
       <View style={styles.container}>
         <AppHeader
@@ -38,7 +42,7 @@ export default class DevProfile extends Component {
               resizeMode="stretch"
             />
             <Text style={styles.devNameText}>
-              {devList[0].name}
+              {devData.name}
             </Text>
             <View style={styles.rowView}>
               <Text style={styles.titleText}>
@@ -53,7 +57,7 @@ export default class DevProfile extends Component {
                 {TOTAL_EXP}
               </Text>
               <Text style={styles.infoText}>
-              2.5 years
+                {totalExperience} years
               </Text>
             </View>
             <View style={styles.rowView}>
@@ -61,7 +65,7 @@ export default class DevProfile extends Component {
                 {TECHNOLOGIES}
               </Text>
               <View style={styles.techView}>
-                {renderTechnology(devList[0].technologies)}
+                {renderTechnology(devData.technologies)}
               </View>
             </View>
             <CButton label={START} btnStyle={styles.button} onPress={this.navigateToReview} />
@@ -71,3 +75,7 @@ export default class DevProfile extends Component {
     );
   }
 }
+
+DevProfile.propTypes = {
+  navigation: PropTypes.object,
+};

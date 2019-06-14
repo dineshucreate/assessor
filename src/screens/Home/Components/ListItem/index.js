@@ -31,14 +31,15 @@ export const getTechImageURI = (techName) => {
   }
 };
 
-const goToDevProfile = () => {
-  navigationService.navigate('DevProfile');
+const goToDevProfile = (dataItem) => {
+  navigationService.navigate('DevProfile', { devData: dataItem });
 };
 
 const ListItem = (props) => {
   const { dataItem: { name, technologies } } = props;
+  const { dataItem } = props;
   const totalExperience = technologies.reduce((acc, val) => acc + val.exp, 0.0);
-  return (<TouchableOpacity style={styles.styleMainContainer} onPress={goToDevProfile}>
+  return (<TouchableOpacity style={styles.styleMainContainer} onPress={() => goToDevProfile(dataItem)}>
     <Image
       style={styles.styleImage}
       resizeMode="stretch"
