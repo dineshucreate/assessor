@@ -1,0 +1,2 @@
+export const SAVE_NEW_DEV_DATA = 'SAVE_NEW_DEV_DATA';
+export const CHANGE_NEW_DEV_DATA = 'CHANGE_NEW_DEV_DATA';

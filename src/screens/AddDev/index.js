@@ -1,55 +1,35 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TextInput, ScrollView, Alert } from 'react-native';
+import { View, Image, Text, TextInput, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import firebase from 'react-native-firebase';
 import { styles } from './styles';
 import { devList } from '../Home/devList';
 import AppHeader from '../../components/AppHeader';
 import ListItem from './Components/ListItem';
 import navigationService from '../../utilities/navigationService';
+import { saveNewDevData } from './action';
 
 class AddDev extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'Gurpreet Singh',
-      email: 'gurpreetsingh@ucreate.co.in',
+      name: 'Jay Singh',
+      email: 'Jay@ucreate.co.in',
       technologies: ['iOS', 'Android', 'React Native'],
       experience: [0, 0, 0],
     };
   }
 
   saveAndGoBack = () => {
-    const { loader } = this.props;
+    const { loader, addNewDev } = this.props;
     loader.open();
     const { name, email, technologies, experience } = this.state;
     const tech = technologies.map((item, index) => {
       return { tech: item, exp: experience[index] };
     });
     const techs = tech.filter((item) => item.exp > 0);
-    const ref = firebase.firestore().collection('Developers').doc(email);
-
-    firebase.firestore().runTransaction(async (transaction) => {
-      const doc = await transaction.get(ref);
-      // if it does not exist set the population to one
-      if (!doc.exists) {
-        transaction.set(ref, { name, email, technologies: techs });
-        // return the new value so we know what the new population is
-        return { name, email, technologies: techs };
-      }
-      transaction.update(ref, { name, email, technologies: techs });
-      // return the new value so we know what the new population is
-      return { name, email, technologies: techs };
-    })
-      .then(() => {
-        navigationService.goBack();
-        loader.close();
-      })
-      .catch(() => {
-        Alert.alert('Save developer faild');
-        loader.close();
-      });
+    const devData = { name, email, technologies: techs };
+    addNewDev(devData);
   };
 
   addExperience = (index, value, isChecked) => {
@@ -137,9 +117,14 @@ const mapStateToProps = (state) => ({
   loader: state.welcomeReducer.loader,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  addNewDev: (devData) => dispatch(saveNewDevData(devData)),
+});
+
 AddDev.propTypes = {
   loader: PropTypes.object,
+  addNewDev: PropTypes.func,
 };
 
-export default connect(mapStateToProps)(AddDev);
+export default connect(mapStateToProps, mapDispatchToProps)(AddDev);
 
