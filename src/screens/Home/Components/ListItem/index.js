@@ -59,7 +59,7 @@ const ListItem = (props) => {
         resizeMode="stretch"
         source={require('../../../../assets/rating.png')}
       />
-      <Text style={styles.ratingText}>{rating}</Text>
+      <Text style={styles.ratingText}>{Math.round(rating)}</Text>
     </View>
   </TouchableOpacity>);
 };
