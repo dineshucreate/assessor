@@ -18,7 +18,7 @@ class AddDev extends Component {
       name: 'Jay Singh',
       email: 'Jay@ucreate.co.in',
       technologies: [],
-      addedTechnologies: [{ isAdd: true, name: '', isChecked: false }],
+      addedTechnologies: [{ exp: 0.5, isChecked: false, name: '' }],
     };
   }
 
@@ -31,27 +31,27 @@ class AddDev extends Component {
   saveAndGoBack = () => {
     const { loader, addNewDev } = this.props;
     loader.open();
-    const { name, email, technologies } = this.state;
-    const techs = technologies.filter((item) => item.isChecked);
+    const { name, email, addedTechnologies } = this.state;
+    const techs = addedTechnologies.filter((item) => item.isChecked);
     const devData = { name, email, technologies: techs, rating: 0 };
     addNewDev(devData);
   };
 
-  addTechnology = (index, value, isChecked) => {
+  addTechnology = (index, isChecked) => {
     if (isChecked) {
       const { addedTechnologies } = this.state;
-      addedTechnologies.splice(index, 1);
-      this.setState({ addedTechnologies });
+      const arrayTechnologies = [...addedTechnologies];
+      arrayTechnologies.splice(index, 1);
+      this.setState({ addedTechnologies: arrayTechnologies });
     } else {
       this.pickerRef.show();
     }
   };
 
-  updateExperience = (index, value, isChecked) => {
+  updateExperience = (index, value) => {
     const { addedTechnologies } = this.state;
     const expArray = [...addedTechnologies];
-    expArray[index].isChecked = isChecked;
-    expArray[index].exp = isChecked ? value : 0;
+    expArray[index].exp = value;
     this.setState({ addedTechnologies: expArray });
   };
 
@@ -70,8 +70,8 @@ class AddDev extends Component {
     return (<ListItem
       key={index}
       dataItem={item}
-      add={(value, isChecked) => this.addTechnology(index, value, isChecked)}
-      updateExperience={(value, isChecked) => this.updateExperience(index, value, isChecked)}
+      add={(isChecked) => this.addTechnology(index, isChecked)}
+      updateExperience={(value) => this.updateExperience(index, value)}
     />);
   };
 

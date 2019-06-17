@@ -7,46 +7,23 @@ import styles from './style';
 import { Colors } from '../../../../utilities/Colors';
 
 export default class ListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      exp: 0.5,
-      isChecked: false,
-      isAdd: true,
-    };
-  }
-
   checkClicked = () => {
-    const { exp } = this.state;
     const { add, dataItem: { isChecked } } = this.props;
-    add(exp, isChecked);
+    add(isChecked);
   };
 
    incrementExp = () => {
-     const { exp } = this.state;
-     const { updateExperience, dataItem: { isChecked } } = this.props;
-     this.setState({ exp: exp + 0.5 },
-       () => {
-         const { exp: experience } = this.state;
-         updateExperience(experience, isChecked);
-       });
+     const { updateExperience, dataItem: { exp } } = this.props;
+     updateExperience(exp + 0.5);
    };
 
    decrementExp = () => {
-     const { exp } = this.state;
-     const { updateExperience, dataItem: { isChecked } } = this.props;
-     if (exp > 0) {
-       this.setState({ exp: exp - 0.5 },
-         () => {
-           const { exp: experience } = this.state;
-           updateExperience(experience, isChecked);
-         });
-     }
+     const { updateExperience, dataItem: { exp } } = this.props;
+     updateExperience(exp - 0.5);
    };
 
    render() {
-     const { dataItem: { name, isChecked } } = this.props;
-     const { exp } = this.state;
+     const { dataItem: { name, isChecked, exp } } = this.props;
      return (<View style={styles.styleMainContainer} >
        <View style={styles.styleInfoContainer}>
          <TouchableOpacity
