@@ -24,7 +24,9 @@ export default class DevProfile extends PureComponent {
     const { pickedTechnologies } = this.state;
     const { devData } = navigation.state.params;
     this.modal.close();
-    navigationService.navigate('Review', { devData, pickedTechnologies });
+    if (pickedTechnologies.length > 0) {
+      navigationService.navigate('Review', { devData, pickedTechnologies });
+    }
   };
 
   goBack = () => {
