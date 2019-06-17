@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     fontStyle: 'italic',
+    marginLeft: 5,
   },
   styleCheckbox: {
     marginHorizontal: 5,

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, TouchableOpacity } from 'react-native';
 import Arrow from 'react-native-vector-icons/Ionicons';
-import UnCheck from 'react-native-vector-icons/Entypo';
-import Check from 'react-native-vector-icons/AntDesign';
+import AddRemove from 'react-native-vector-icons/AntDesign';
 import styles from './style';
 import { Colors } from '../../../../utilities/Colors';
 
@@ -13,44 +12,41 @@ export default class ListItem extends Component {
     this.state = {
       exp: 0.5,
       isChecked: false,
+      isAdd: true,
     };
   }
 
   checkClicked = () => {
-    const { isChecked, exp } = this.state;
-    const { add } = this.props;
-    this.setState({ isChecked: !isChecked },
-      () => {
-        const { isChecked: checked } = this.state;
-        add(exp, checked);
-      });
+    const { exp } = this.state;
+    const { add, dataItem: { isChecked } } = this.props;
+    add(exp, isChecked);
   };
 
    incrementExp = () => {
-     const { exp, isChecked } = this.state;
-     const { add } = this.props;
+     const { exp } = this.state;
+     const { updateExperience, dataItem: { isChecked } } = this.props;
      this.setState({ exp: exp + 0.5 },
        () => {
          const { exp: experience } = this.state;
-         add(experience, isChecked);
+         updateExperience(experience, isChecked);
        });
    };
 
    decrementExp = () => {
-     const { exp, isChecked } = this.state;
-     const { add } = this.props;
+     const { exp } = this.state;
+     const { updateExperience, dataItem: { isChecked } } = this.props;
      if (exp > 0) {
        this.setState({ exp: exp - 0.5 },
          () => {
            const { exp: experience } = this.state;
-           add(experience, isChecked);
+           updateExperience(experience, isChecked);
          });
      }
    };
 
    render() {
-     const { dataItem } = this.props;
-     const { exp, isChecked } = this.state;
+     const { dataItem: { name, isChecked } } = this.props;
+     const { exp } = this.state;
      return (<View style={styles.styleMainContainer} >
        <View style={styles.styleInfoContainer}>
          <TouchableOpacity
@@ -58,13 +54,15 @@ export default class ListItem extends Component {
            hitSlop={styles.btnHitSlop}
            onPress={this.checkClicked}
          >
-           {isChecked ?
-             <Check size={25} name="checkcircleo" color="black" />
+           {!isChecked ?
+             <AddRemove size={25} name="pluscircle" color={Colors.PrimaryAppColor} />
              :
-             <UnCheck size={25} name="circle" color="black" />
+             <AddRemove size={25} name="minuscircleo" color={Colors.PrimaryAppColor} />
            }
          </TouchableOpacity>
-         <Text style={styles.styleTitle}>{dataItem}</Text>
+         { isChecked &&
+         <Text style={styles.styleTitle}>{name}</Text>
+         }
          { isChecked &&
          <View style={styles.styleExperience}>
            <TouchableOpacity hitSlop={styles.btnHitSlop} onPress={this.decrementExp} >
@@ -82,7 +80,8 @@ export default class ListItem extends Component {
 }
 
 ListItem.propTypes = {
-  dataItem: PropTypes.string,
+  dataItem: PropTypes.object,
   add: PropTypes.func,
+  updateExperience: PropTypes.func,
 };
 

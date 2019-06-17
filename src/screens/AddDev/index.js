@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, Text, TextInput, ScrollView } from 'react-native';
 import firebase from 'react-native-firebase';
+import ReactNativePickerModule from 'react-native-picker-module';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
@@ -17,6 +18,7 @@ class AddDev extends Component {
       name: 'Jay Singh',
       email: 'Jay@ucreate.co.in',
       technologies: [],
+      addedTechnologies: [{ isAdd: true, name: '', isChecked: false }],
     };
   }
 
@@ -35,29 +37,67 @@ class AddDev extends Component {
     addNewDev(devData);
   };
 
-  addExperience = (index, value, isChecked) => {
-    const { technologies } = this.state;
-    const expArray = [...technologies];
+  addTechnology = (index, value, isChecked) => {
+    if (isChecked) {
+      const { addedTechnologies } = this.state;
+      addedTechnologies.splice(index, 1);
+      this.setState({ addedTechnologies });
+    } else {
+      this.pickerRef.show();
+    }
+  };
+
+  updateExperience = (index, value, isChecked) => {
+    const { addedTechnologies } = this.state;
+    const expArray = [...addedTechnologies];
     expArray[index].isChecked = isChecked;
     expArray[index].exp = isChecked ? value : 0;
-    this.setState({ technologies: expArray });
+    this.setState({ addedTechnologies: expArray });
   };
 
   goBack = () => {
     navigationService.goBack();
   };
 
-  renderTechnologies = () => {
+  listTechnologies = () => {
     const { technologies } = this.state;
-    return technologies.map((item, index) => {
-      return this.renderItem(item, index);
+    return technologies.map((item) => {
+      return item.name;
     });
   }
+
   renderItem = (item, index) => {
     return (<ListItem
       key={index}
-      dataItem={item.name}
-      add={(value, isChecked) => this.addExperience(index, value, isChecked)}
+      dataItem={item}
+      add={(value, isChecked) => this.addTechnology(index, value, isChecked)}
+      updateExperience={(value, isChecked) => this.updateExperience(index, value, isChecked)}
+    />);
+  };
+
+  renderTechnologies = () => {
+    const { addedTechnologies } = this.state;
+    return addedTechnologies.map((item, index) => {
+      return this.renderItem(item, index);
+    });
+  }
+
+  renderPicker = () => {
+    return (<ReactNativePickerModule
+      pickerRef={(e) => { this.pickerRef = e; }}
+      value={this.state.selectedValue}
+      title={'Select a technology'}
+      items={this.listTechnologies()}
+      onCancel={() => { }}
+      onValueChange={(value, index) => {
+        const { technologies, addedTechnologies } = this.state;
+        const expArray = [...technologies];
+        expArray[index].isChecked = true;
+        if (addedTechnologies.indexOf(expArray[index]) === -1) {
+          addedTechnologies.splice(addedTechnologies.length - 1, 0, expArray[index]);
+          this.setState({ addedTechnologies });
+        }
+      }}
     />);
   };
 
@@ -111,6 +151,7 @@ class AddDev extends Component {
             Select technology and specify experience in years
           </Text>
           {this.renderTechnologies()}
+          {this.renderPicker()}
         </ScrollView>
       </View>
     );
