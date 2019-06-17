@@ -34,6 +34,7 @@ class AddDev extends Component {
     loader.open();
     const { name, email, addedTechnologies } = this.state;
     const techs = addedTechnologies.filter((item) => item.isChecked);
+    techs.forEach((item) => { delete item.isChecked; });
     const devData = { name, email, technologies: techs, rating: 0 };
     addNewDev(devData);
   };
