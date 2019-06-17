@@ -7,41 +7,35 @@ import AppHeader from '../../components/AppHeader';
 import ListItem from './Components/ListItem';
 import navigationService from '../../utilities/navigationService';
 import { saveNewDevData } from '../AddDev/action';
+import { IOS, REACT_NATIVE } from '../../utilities/constant';
+import { IOS_DATA, REACT_NATIVE_DATA, ANDROID_DATA, REVIEW_INFO } from './constant';
 
 class Review extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      sections: [
-        { title: 'iOS',
-          data: [{ topic: 'Auto Layout', isChecked: false, rating: 0 },
-            { topic: 'Core Data', isChecked: false, rating: 0 },
-            { topic: 'Cocoa pods', isChecked: false, rating: 0 }] },
-        { title: 'Android',
-          data: [{ topic: 'UI', isChecked: false, rating: 0 },
-            { topic: 'MVC', isChecked: false, rating: 0 },
-            { topic: 'Fragments', isChecked: false, rating: 0 }] },
-        { title: 'React Native',
-          data: [{ topic: 'JSX', isChecked: false, rating: 0 },
-            { topic: 'HOC', isChecked: false, rating: 0 },
-            { topic: 'Redux', isChecked: false, rating: 0 }] },
-      ],
+      sections: this.getData(),
     };
   }
 
-  getSectionIndex = (title) => {
-    switch (title) {
-      case 'iOS': {
-        return 0;
+  getData = () => {
+    const { pickedTechnologies } = this.props.navigation.state.params;
+    const dataArray = [];
+    pickedTechnologies.forEach((element, index) => {
+      switch (element.name) {
+        case IOS:
+          dataArray.push({ ...IOS_DATA, sectionIndex: index });
+          break;
+        case REACT_NATIVE:
+          dataArray.push({ ...REACT_NATIVE_DATA, sectionIndex: index });
+          break;
+        default:
+          dataArray.push({ ...ANDROID_DATA, sectionIndex: index });
+          break;
       }
-      case 'Android': {
-        return 1;
-      }
-      default: {
-        return 2;
-      }
-    }
+    });
+    return dataArray;
   };
 
   saveAndGoBack = () => {
@@ -60,16 +54,16 @@ class Review extends Component {
 
   addRating = (index, section, value, isChecked) => {
     const { sections } = this.state;
-    const sectionArray = [...sections];
-    const sectionIndex = this.getSectionIndex(section.title);
-    sectionArray[sectionIndex].data[index].isChecked = isChecked;
-    sectionArray[sectionIndex].data[index].rating = isChecked ? value : 0;
-    this.setState({ sections: sectionArray });
+    const sectionIndex = section.sectionIndex;
+    sections[sectionIndex].data[index].isChecked = isChecked;
+    sections[sectionIndex].data[index].rating = isChecked ? value : 0;
+    this.setState({ sections });
   };
 
   goBack = () => {
     navigationService.goBack();
   };
+
   renderItem = ({ item, index, section }) => {
     return (<View style={{ justifyContent: 'center', alignItems: 'center' }}>
       <ListItem
@@ -91,7 +85,7 @@ class Review extends Component {
         <View style={styles.subContainer}>
           <Text style={styles.styleTitle}>{devData.name}</Text>
           <Text style={styles.styleInsturctions}>
-                Select topic and specify rating from 0 to 10
+            {REVIEW_INFO}
           </Text>
           <SectionList
             showsVerticalScrollIndicator={false}

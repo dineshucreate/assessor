@@ -6136,6 +6136,11 @@ react-native-modalbox@^1.7.1:
     create-react-class "^15.6.0"
     prop-types "^15.5.10"
 
+react-native-picker-module@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-picker-module/-/react-native-picker-module-1.1.1.tgz#b008a2a61ccf66c150c9e4a4a7a1e8becef7cf0e"
+  integrity sha512-Ryhau39uCbHKeZosAlEEDlCNvxKU1uyBlOwOuTPYunC6mm9AvMWJLzCZQmWUBew2cwte9sJqi1Cp+0QOhpuguQ==
+
 react-native-safe-area-view@^0.14.1:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.14.5.tgz#eeded66bbeb0807f0a7f5f449e7fb2871f7ecf76"
@@ -6147,6 +6152,11 @@ react-native-safe-area-view@^0.14.1:
   version "1.0.0-alpha.22"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha512-kSyAt0AeVU6N7ZonfV6dP6iZF8B7Bce+tk3eujXhzBGsLg0VSLnU7uE9VqJF0xdQrHR91ZjGgVMieo/8df9KTA==
+
+react-native-star-view@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-star-view/-/react-native-star-view-1.1.3.tgz#299d48edfcd53cfbe6483933fcc53a45d7adbbeb"
+  integrity sha512-zn8PWKQYt0FedobscN26lAGK2UcLXfe1Mc4Fspi1sII5Kij4mbsiheI6rJrN1b8J5pe8RdWXuMalHIqpExY/fw==
 
 react-native-tab-view@^1.2.0, react-native-tab-view@^1.4.1:
   version "1.4.1"

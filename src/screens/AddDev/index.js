@@ -10,6 +10,7 @@ import AppHeader from '../../components/AppHeader';
 import ListItem from './Components/ListItem';
 import navigationService from '../../utilities/navigationService';
 import { saveNewDevData } from './action';
+import { NAME, EMAIL, ADD_DEV_INFO, ENTER_NAME, ENTER_EMAIL } from './constant';
 
 class AddDev extends Component {
   constructor(props) {
@@ -123,12 +124,12 @@ class AddDev extends Component {
           />
           <View style={styles.nameContainer}>
             <Text style={styles.devNameText}>
-              Name
+              {NAME}
             </Text>
             <TextInput
               style={styles.devNameTextInput}
               autoCapitalize="none"
-              placeholder="Enter Name"
+              placeholder={ENTER_NAME}
               onChangeText={(text) => this.setState({ name: text })}
               value={name}
               clearButtonMode="always"
@@ -136,19 +137,19 @@ class AddDev extends Component {
           </View>
           <View style={styles.nameContainer}>
             <Text style={styles.devNameText}>
-              Email
+              {EMAIL}
             </Text>
             <TextInput
               style={styles.devNameTextInput}
               autoCapitalize="none"
-              placeholder="Enter Email"
+              placeholder={ENTER_EMAIL}
               onChangeText={(text) => this.setState({ email: text })}
               value={email}
               clearButtonMode="always"
             />
           </View>
           <Text style={styles.styleInsturctions}>
-            Select technology and specify experience in years
+            {ADD_DEV_INFO}
           </Text>
           {this.renderTechnologies()}
           {this.renderPicker()}

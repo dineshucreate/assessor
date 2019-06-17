@@ -8,9 +8,9 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   subContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 60,
   },
   devPic: {
     height: devPicHeight,
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     color: 'black',
     fontWeight: '600',
-    marginTop: 80,
+    marginTop: 60,
     padding: 20,
     textAlign: 'center',
   },

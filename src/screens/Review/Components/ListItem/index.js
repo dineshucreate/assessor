@@ -29,7 +29,7 @@ export default class ListItem extends Component {
    incrementRating = () => {
      const { rating, isChecked } = this.state;
      const { add } = this.props;
-     if (rating < 10) {
+     if (rating < 5) {
        this.setState({ rating: rating + 0.5 },
          () => {
            const { rating: r } = this.state;

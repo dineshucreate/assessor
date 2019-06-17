@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   styleExperience: {
+    flex: 1,
     position: 'absolute',
     right: 0,
     flexDirection: 'row',
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   styleExpText: {
     fontSize: 16,
     fontWeight: 'bold',
-    width: 40,
+    paddingHorizontal: 2,
     textAlign: 'center',
   },
 });

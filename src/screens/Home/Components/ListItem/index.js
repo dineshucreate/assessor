@@ -2,9 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
+import Star from 'react-native-star-view';
 import styles from './style';
 import navigationService from '../../../../utilities/navigationService';
-import { TECH_IOS, TECH_REACT_NATIVE, TECH_ANDROID, PROFILE_PIC } from './constants';
+import { TECH_IOS, TECH_REACT_NATIVE, TECH_ANDROID, PROFILE_PIC, EXPERIENCE, YEARS } from './constants';
+import { IOS, REACT_NATIVE } from '../../../../utilities/constant';
 
 export const renderTechnology = (technologies) => {
   return technologies.map((item, index) => {
@@ -20,10 +22,10 @@ export const renderTechnology = (technologies) => {
 
 export const getTechImageURI = (techName) => {
   switch (techName) {
-    case 'iOS': {
+    case IOS: {
       return TECH_IOS;
     }
-    case 'React-Native': {
+    case REACT_NATIVE: {
       return TECH_REACT_NATIVE;
     }
     default: {
@@ -40,6 +42,8 @@ const ListItem = (props) => {
   const { dataItem: { name, technologies, rating } } = props;
   const { dataItem } = props;
   const totalExperience = technologies.reduce((acc, val) => acc + val.exp, 0.0);
+  const updateRating = Number(rating).toFixed(1);
+
   return (<TouchableOpacity style={styles.styleMainContainer} onPress={() => goToDevProfile(dataItem)}>
     <Image
       style={styles.styleImage}
@@ -51,15 +55,11 @@ const ListItem = (props) => {
       <View style={styles.styleTechnologies} >
         { renderTechnology(technologies) }
       </View>
-      <Text style={styles.styleExperienceText}>Experience: {totalExperience} years</Text>
+      <Text style={styles.styleExperienceText}> {`${EXPERIENCE} ${totalExperience} ${YEARS}`}</Text>
     </View>
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <Image
-        style={styles.ratingImage}
-        resizeMode="stretch"
-        source={require('../../../../assets/rating.png')}
-      />
-      <Text style={styles.ratingText}>{Number(rating).toFixed(1)}</Text>
+    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={styles.ratingText}>{updateRating}</Text>
+      <Star score={Number(updateRating)} style={{ height: 20, width: 80 }} />
     </View>
   </TouchableOpacity>);
 };

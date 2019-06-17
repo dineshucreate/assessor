@@ -17,65 +17,48 @@ class Home extends React.Component {
     };
   }
 
-  async componentDidMount() {
-    const { loader } = this.props;
-    loader.open();
-    const { currentUser } = firebase.auth();
-    const data = await this.getData();
-    this.setState({ currentUser, data });
-    loader.close();
-    this.refresh();
+  componentDidMount() {
+    firebase.firestore().collection('Developers').onSnapshot(this.handleData);
   }
 
-   getData = async () => {
-     const snapshot = await firebase.firestore().collection('Developers').get();
-     return snapshot.docs.map((doc) => doc.data());
+   handleData = (snapshot) => {
+     const data = snapshot.docs.map((doc) => doc.data());
+     this.setState({ data });
    }
 
-   refresh = () => {
-     const { navigation } = this.props;
-     navigation.addListener(
-       'willFocus',
-       async () => {
-         const data = await this.getData();
-         this.setState({ data });
-       }
-     );
-   }
+  signOut = () => {
+    firebase.auth().signOut();
+    navigationService.reset('Login');
+  }
 
-    signOut = () => {
-      firebase.auth().signOut();
-      navigationService.reset('Login');
-    }
+  navigateToAddDev = () => {
+    navigationService.navigate('AddDev');
+  }
 
-    navigateToAddDev = () => {
-      navigationService.navigate('AddDev');
-    }
+  renderItem = ({ item, index }) => {
+    return (<ListItem key={index} dataItem={item} isGrid={this.state.isSwitchOn} />);
+  };
 
-    renderItem = ({ item, index }) => {
-      return (<ListItem key={index} dataItem={item} isGrid={this.state.isSwitchOn} />);
-    };
-
-    render() {
-      const { data } = this.state;
-      return (
-        <View style={styles.container}>
-          <AppHeader
-            title="Devs"
-            rtTitle="Add"
-            lbtnOnPress={this.signOut}
-            rbtnOnPress={this.navigateToAddDev}
-          />
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item, index) => index.toString()}
-            data={data}
-            numColumns={1}
-            renderItem={this.renderItem}
-          />
-        </View>
-      );
-    }
+  render() {
+    const { data } = this.state;
+    return (
+      <View style={styles.container}>
+        <AppHeader
+          title="Devs"
+          rtTitle="Add"
+          lbtnOnPress={this.signOut}
+          rbtnOnPress={this.navigateToAddDev}
+        />
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item, index) => index.toString()}
+          data={data}
+          numColumns={1}
+          renderItem={this.renderItem}
+        />
+      </View>
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({

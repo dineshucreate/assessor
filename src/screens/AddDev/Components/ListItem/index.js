@@ -6,7 +6,7 @@ import AddRemove from 'react-native-vector-icons/AntDesign';
 import styles from './style';
 import { Colors } from '../../../../utilities/Colors';
 
-export default class ListItem extends Component {
+class ListItem extends Component {
   checkClicked = () => {
     const { add, dataItem: { isChecked } } = this.props;
     add(isChecked);
@@ -62,3 +62,4 @@ ListItem.propTypes = {
   updateExperience: PropTypes.func,
 };
 
+export default ListItem;

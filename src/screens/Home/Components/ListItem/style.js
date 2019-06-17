@@ -1,27 +1,28 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../../../utilities/Colors';
 import utilities from '../../../../utilities';
 
 
 const styles = StyleSheet.create({
-
   styleMainContainer: {
-    flex: 1,
-    backgroundColor: 'white',
+    width: utilities.deviceWidth - 30,
     justifyContent: 'space-between',
     flexDirection: 'row',
+    shadowColor: 'grey',
+    padding: 10,
     marginHorizontal: 15,
     marginVertical: 7,
-    padding: 10,
-    borderWidth: 2,
-    borderColor: Colors.PrimaryAppColor,
+    shadowOffset: {
+      height: 10,
+      width: 10,
+    },
+    shadowRadius: 10,
+    shadowOpacity: 0.5,
+    backgroundColor: 'white',
     borderRadius: 10,
-    width: utilities.deviceWidth - 30,
   },
   styleInfoContainer: {
-    backgroundColor: 'white',
     flexDirection: 'column',
-    marginHorizontal: 15,
+    marginHorizontal: 5,
     flex: 1,
   },
   styleTitle: {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
   },
   ratingText: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     fontStyle: 'italic',
     padding: 5,
